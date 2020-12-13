@@ -15,7 +15,8 @@ class Post(models.Model):
     created = models.DateTimeField(editable=False, auto_now_add=True)
     modified = models.DateTimeField(editable=False)
     slug = models.SlugField(unique=True, max_length=150, editable=False, blank=True, null=True)
-    image = models.ImageField(upload_to='media/post/photos/', blank=True, null=True)
+    image = models.ImageField(upload_to='post', blank=True, null=True)
+    modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='modified_by')
 
     def __str__(self):
         return self.title
